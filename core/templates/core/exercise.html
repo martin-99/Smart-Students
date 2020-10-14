@@ -1,0 +1,101 @@
+{% extends 'core/base.html'%}
+
+
+{% block content %}
+
+{% for e in exercise%}
+<div class="flex items-center justify-center h-screen">
+    
+
+    <div class=" w-full max-w-xl">
+<form  name="quiz" class="g-white shadow-md rounded p-20">
+{% csrf_token %}
+
+    <h1 class="text-3xl text-center mb-5 ">{{e.name}}</h1>
+    <div class="shadow appearance-none border rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'">
+    <input class=" m-5 py-4 px-4" id="opt_1" type="radio" name="{{e.id}}" value="{{ e.opt_1 }}">
+    <label for="opt_1">{{e.opt_1}} </label>
+    
+    </div> 
+    
+    <div class="shadow appearance-none border rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'">
+    <input class="m-5 py-4 px-4" id="opt_2" type="radio" name="{{e.id}}" value="{{ e.opt_2 }}">
+    <label for="opt_2">{{e.opt_2}} </label>
+        
+</div>
+    <div  class="shadow appearance-none border rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'">
+    <input class="m-5 py-4 px-4" id="opt_3" type="radio" name="{{e.id}}" value="{{ e.opt_3 }}">
+    <label for="opt_3">{{e.opt_3}} </label>
+        
+</div>
+    <div class="shadow appearance-none border rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'">
+    <input class="m-5 py-4 px-4" id="opt_4" type="radio" name="{{e.id}}" value="{{e.opt_4 }}">
+    <label for="opt_4">{{e.opt_4}} </label>
+         
+      
+</div>
+<a id="save" class="inline-block w-100 h-25 m-5  bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">Save</a>
+    
+    {% if exercise.has_next%}
+        <a  class="inline-block w-100 h-25 m-5  bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" href="?page={{exercise.next_page_number}}">Next</a>
+    {%else %}
+        <button id="btn-result" class="mt-3   bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="button" >Check result</button>
+    {%endif %}
+        <p id="result" ></p>
+</form>
+</div>
+</div>
+
+<!-- <script>
+
+    let btn = document.getElementById("save");
+        btn.addEventListener("click",get_result)
+    let correct = "{{e.correct}}"
+        
+        function get_result(){
+        const form = document.forms.quiz
+        const radios = form.elements
+        const checked = Array
+                     .from(radios)
+                     .find(radio => radio.checked).value;
+        const radio_btn = Array
+                     .from(radios)
+                     .find(radio => radio.checked);
+        
+        
+        if(checked == 'undefined'){
+            checked = " "
+        }
+        if(checked == correct){
+           radio_btn.parentElement.style.border = "1px solid green";
+           result.innerHTML = "Correct"
+    
+        }
+        
+        else {
+            radio_btn.parentElement.style.border = "1px solid #C53030"; //#FC8181
+            result.innerHTML = "Not correct"
+            
+    
+    
+        }
+        for(let i = 0 ;i < radios.length;i++){
+            radios[i].disabled = true
+        }
+    
+        console.log(String(checked))
+        console.log(String(correct))
+    
+        }
+    
+    </script> -->
+{% endfor %}
+
+
+
+{% load static%}
+<script src="/static/app.js"></script>
+
+
+
+{% endblock content%}

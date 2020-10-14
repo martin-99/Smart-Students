@@ -1,0 +1,32 @@
+{% extends 'core/base.html'%}
+{% block content%}
+
+  <section class="flex flex-row flex-wrap mx-auto">
+
+ 
+    
+  
+
+{% for category in categories %}
+<!-- Card Component -->
+ <!-- component -->
+<div class="max-w-xs m-5 rounded overflow-hidden shadow-lg my-2">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{{category.name}}</div>
+    <p class="text-grey-darker text-base">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+    </p>
+  </div>
+  <div class="px-6 py-4">
+    <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2">#{{exercise.category}}</span>
+    <span class="inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker">#{{exercise.author}}</span>
+    <a href="/{{category.id}}/exercise" class="mt-2 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-700 bg-indigo-100 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-300 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10 hover:bg-indigo-700 hover:text-white">
+                Solve
+              </a>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock content %} 
+ 
